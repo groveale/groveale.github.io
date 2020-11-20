@@ -59,7 +59,8 @@ plugins:
 author:
   name   : "Alex Grover"
   avatar : "/assets/images/avatar.png"
-  bio    : "SharePoint Consultant / Xamarin Developer / Anything else that needs doing :)"
+  bio    : "SharePoint Consultant / Xamarin Developer / Adventurer"
+  location : "London, UK"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
@@ -98,6 +99,7 @@ defaults:
       comments: true
       share: true
       related: true
+      show_date: true
   # _pages
   - scope:
       path: "_pages"
