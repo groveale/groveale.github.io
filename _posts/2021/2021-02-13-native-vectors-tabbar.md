@@ -8,9 +8,9 @@ tags:
   - Design
 ---
 
-If like me, you've been developing Xamarin.iOS and Xamarin.Android apps for some then you will be used to implementing things in a certain way. A recent example that I cam across is dealing local image assets.
+If like me, you've been developing Xamarin.iOS and Xamarin.Android apps for some time then you will be used to implementing things in a certain way. A recent example that I came across is dealing with local image assets.
 
-So in iOS, I like to store my images as .pds vectors. This way I don't need to mess around with different sizes and can just have one copy of the image. I store these as `Image Sets` in the `Assests.xcassets` [folder](https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/images-icons/displaying-an-image?tabs=macos). Bonus here being that I get dark and light theme handling out of the box. Great!
+So in iOS, I like to store my images as .pdf vectors. This way I don't need to mess around with different sizes and can just have one copy of the image. I store these as `Image Sets` in [`Assests.xcassets`](https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/images-icons/displaying-an-image?tabs=macos). Bonus here being that I get dark and light theme handling out of the box. Great!
 
 In Android, I store my images in the `drawable` folder as .xml `SVGs`. Again, this is for convenience as I don't need to generate all the different sizes for different resolutions.
 
@@ -18,9 +18,7 @@ Recently I've been developing a new app using Xamarin.Forms - One of the first t
 
 ## TabBar Icon
 
-Let's set the Icons. Looks simple enough from the docs. The `Icon`, property of the TabBAr is of type `ImageSource`". 
-
-"An `ImageSource` instance, either File, Uri or Resource, which sets the image to display." 
+Let's set the tab bar icons. Looks simple enough from the docs. The `Icon`, property of the TabBar is of type `ImageSource`. 
 
 The [docs](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/images?tabs=macos) describe four different ways that we can set an `ImageSource`
 
@@ -58,6 +56,6 @@ Then in my `AppShell.xml` I needed to write some `OnPlatform` code to handel the
         ...
 ```
 
-Awesome. It just works, not sure why I was surprised.. I just think this should be documented, as I'm sure a lot of developers would use this.
+Awesome. It just works, not sure why I was surprised.. I just think this should be documented, as I'm sure this is how a lot of developers would use this.
 
 ![iOS-assets](/assets/native-vectors/iOS-tabs.png)
