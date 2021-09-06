@@ -116,3 +116,9 @@ tag_archive:
   path: /tags/
 
 google_site_verification: "ByD62wVxv7k7baPGkf8EvPfxKKqcTKx007oG2luD3w8"
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-13L4C3HBZX"
+    anonymize_ip: false # default
