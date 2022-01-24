@@ -28,7 +28,7 @@ The main issue this solution resolved was that we never knew how long the conten
 A couple of months ago (September 2021) Microsoft finally updated the content type hub, giving it a nice modern look and with it (and more importantly) some CSOM endpoints that enable us to pull these content types ourselves.
 
 ```c#
-List<string> ContentTypes = new List<string>({"0x0101", "0x01" })
+List<string> ContentTypes = new List<string>{"0x0101", "0x01" }
 
 var sub = new Microsoft.SharePoint.Client.Taxonomy.ContentTypeSync.ContentTypeSubscriber(ClientContext);
 ClientContext.Load(sub);
