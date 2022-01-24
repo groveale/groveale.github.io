@@ -8,42 +8,7 @@ tags:
   - Content Types
 ---
 
-
-
-I've been waiting for this verb since site scripts were released way back in 2018. I've been using all sorts of solutions to get around this, my OG solution involved two site designs, a flow trigger, an azure storage queue and an azure function. 
-
-![OG-solutions](/assets/site-scripts/content-type-og-solution.png)
-
-The main issue this solution resolved was we never knew how long the content types would take to pull down from the content type hub. Could be anywhere between 1 hour to 24 hours. Then Microsoft moved all the flow triggers and connectors I was using into the premium tier... but we won't dwell on that.
-
-Then last September (2021) Microsoft finally updated the content type hub, giving it a nice modern look and with it some CSOM endpoints which enabled us to pull these content types ourselves.
-
-```c#
-List<string> ContentTypes = new List<string>({"0x0101", "0x01" })
-
-var sub = new Microsoft.SharePoint.Client.Taxonomy.ContentTypeSync.ContentTypeSubscriber(ClientContext);
-ClientContext.Load(sub);
-ClientContext.ExecuteQueryRetry();
-
-var res = sub.SyncContentTypesFromHubSite2(ClientContext.Url, ContentTypes);
-ClientContext.ExecuteQueryRetry();
-```
-
-and ofcourse a PnP PowerShell cmdlet
-
-```powershell
- Add-PnPContentTypesFromContentTypeHub -ContentTypes "0x0101", "0x01" 
-```
-
-Great, I can now rationalise my solution. The only real change is with the Azure function. Rather that checking for the content types, it can now pull them down.
-
-![sync-solution](/assets/site-scripts/content-type-og-solution-v2.png)
-
-Sites are now ready in minutes rather than any where between 1 hour to 24 hours.
-
-## Site Scripts
-
-Last week, I had an absolute breakthrough.
+You may have seen my last post on content types and site scripts, but it feels like I've been waiting for this verb since site scripts were released way back in 2018.
  
 I was digging around some documentation around content types, I was actually looking for what can be configured from the [M365 DSC tool](https://microsoft365dsc.com/) (turns out not much) when I found this [article](https://support.microsoft.com/en-us/office/what-s-changed-in-content-type-publishing-609399c7-5c42-4e25-aff0-b59d4aa1867f). 
 
