@@ -16,7 +16,7 @@
 title: Alex Grover
 email:
 description: >- # this means to ignore newlines until "baseurl:"
-  SharePoint Consultant / Xamarin developer. A place to share come of the cool things I do and create.
+  SharePoint / Xamarin developer. A place to share come of the cool things I do and create.
   Posts will contain examples from Xamarin, SharePoint Online, SPFx, Office 365, Azure and PowerShell.
 twitter_username: groveale
 github_username: groveale
@@ -59,7 +59,7 @@ plugins:
 author:
   name   : "Alex Grover"
   avatar : "/assets/images/avatar.png"
-  bio    : "SharePoint Consultant / Xamarin Developer / Blockchain Enthusiast"
+  bio    : "SharePoint CSA / Xamarin Developer / AI Enthusiast"
   location : "London, UK"
   links:
     - label: "Website"
