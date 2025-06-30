@@ -11,7 +11,7 @@ tags:
 
 # The Morning That Changed My Mind About AI-Assisted Development
 
-It's 7:00 AM on a Tuesday morning, and I'm staring at my coffee cup, contemplating the day ahead. I had promised to showcase my SPFx-archive solution this morning, so I crack open the repository with the confidence of someone who definitely remembers what they built two years ago.
+It's 7:00 AM on a Monday morning, and I'm staring at my coffee cup, contemplating the day ahead. I had promised to showcase my SPFx-archive solution this morning, so I crack open the repository with the confidence of someone who definitely remembers what they built two years ago.
 
 *Spoiler alert: I was in for a surprise.*
 
