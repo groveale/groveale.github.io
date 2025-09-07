@@ -10,8 +10,6 @@ tags:
   - Tax
 ---
 
-# The 6:00 a.m. Tax Realisation (And the Tool That Turns Dread Into Strategy)
-
 It’s a grey British Sunday. Kettle on. Everyone else in the house is asleep. You open your payslip (again) and feel that quiet, familiar annoyance: *“I earn how much—and keep how little?”*  
 
 You’ve heard of the 40% band, maybe even the 45%. But nobody warned you about the invisible cliffs:  
@@ -56,6 +54,8 @@ You drag a pension percentage and instantly watch tax shrink, marginal cliffs fl
 
 It reframes pension from *“money I lose today”* to *“money I redirect while unlocking tax efficiency.”*  
 
+![Main Visualisation](/assets/tax-app/web-main-visual.png)
+
 ---
 
 ## Key Moments It Surfaces
@@ -87,12 +87,79 @@ A pure calculation engine crunches:
 
 Then it generates a composable JSON breakdown feeding stacked visual bars and savings summaries. No spreadsheets. No black box.  
 
+Here are the tax rules used by the engine - let me know if you think there is anything wrong
+
+```typescript
+// Centralized thresholds & rates (easier future updates)
+// NOTE: Adjust once official 2025/26 figures confirmed.
+export interface IncomeTaxBand {
+  from: number;
+  to?: number;
+  rate: number; // e.g. 0.2
+}
+
+export const PERSONAL_ALLOWANCE = 12_570;
+export const PERSONAL_ALLOWANCE_TAPER_START = 100_000;
+export const PERSONAL_ALLOWANCE_TAPER_LOSS_PER = 2; // lose £1 per £2
+export const PERSONAL_ALLOWANCE_FLOOR = 0;
+
+// Bands here are applied to taxable income AFTER personal allowance.
+// We express band spans relative to 0 taxable amount after PA.
+export const INCOME_TAX_BANDS: IncomeTaxBand[] = [
+  { from: 0, to: 37_700, rate: 0.2 },          // Basic (after allowance)
+  { from: 37_700, to: 125_140 - PERSONAL_ALLOWANCE, rate: 0.4 }, // Higher
+  { from: 125_140 - PERSONAL_ALLOWANCE, rate: 0.45 } // Additional
+];
+
+// National Insurance (Employee, Class 1) – assumed continuing rates
+export const NI_PRIMARY_THRESHOLD = 12_570;
+export const NI_UPPER_EARNINGS_LIMIT = 50_270;
+export const NI_MAIN_RATE = 0.08; // 8%
+export const NI_ADDITIONAL_RATE = 0.02; // 2%
+
+// Child Benefit amounts (assumed carryover; update when official)
+export const CHILD_BENEFIT_FIRST_CHILD_WEEKLY = 25.60;
+export const CHILD_BENEFIT_ADDITIONAL_CHILD_WEEKLY = 16.95;
+export const CHILD_BENEFIT_YEAR_WEEKS = 52;
+
+// High Income Child Benefit Charge updated thresholds
+export const CHILD_BENEFIT_CHARGE_START = 60_000;
+export const CHILD_BENEFIT_CHARGE_END = 80_000; // fully removed by here
+
+export interface TaxSystemConfig {
+  taxYearLabel: string;
+}
+
+export const CONFIG: TaxSystemConfig = {
+  taxYearLabel: '2025/26 (assumed)'
+};
+
+```
+
 ---
 
 ## Common “Aha” Examples
-- **£110k salary, modest pension** → allowance taper spike. Increase pension % → reclaim allowance, huge relief.  
+- **£115k salary, modest pension** → allowance taper spike. Increase pension % → reclaim allowance, huge relief.  
 - **Mid-£60k earner with two kids** → Child Benefit leakage. A tweak in sacrifice brings back family cash flow.  
 - **EV salary sacrifice modelling (coming next)** → Net cost far lower once Tax + NI + low BiK rate is shown.  
+
+### Dig into the £115k Salary Example
+
+Let’s walk through a classic “aha” scenario:  
+Suppose your salary is £115,000 and you’re making only 5% pension contribution. At this level, you’re well into the personal allowance taper zone—meaning for every £2 you earn above £100,000, you lose £1 of your tax-free allowance. The result? Your effective tax rate on this band can spike to 60% or more. Just look at those numbers
+
+![115K with 5% Pension](/assets/tax-app/web-115K-5.png)
+
+Now, use the tool to increase your pension contribution by say 10 percent. Instantly, you’ll see:
+
+- Your taxable income drops below the taper threshold.
+- Your personal allowance is fully restored.
+- The tax you “save” is far greater than the pension amount you contribute—sometimes over half of each extra pound.
+- Take home has taken a small drop but look at that pension contribution. You'll be happy about that in the years to come
+
+![115K with 15% Pension](/assets/tax-app/web-115K-15.png)
+
+
 
 ---
 
