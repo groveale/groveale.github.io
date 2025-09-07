@@ -15,7 +15,6 @@ It’s a grey British Sunday. Kettle on. Everyone else in the house is asleep. Y
 You’ve heard of the 40% band, maybe even the 45%. But nobody warned you about the invisible cliffs:  
 
 - The personal allowance taper past £100k.  
-- The Child Benefit charge nibbling away from £50k.  
 - That weird effective 60% zone.  
 
 You’re not reckless. You’re just busy. And the system’s opacity quietly taxes that, too. Let's do some vibe coding to understand this mess
